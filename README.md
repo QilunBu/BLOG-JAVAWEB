@@ -60,9 +60,21 @@ why maven: Maaven is used to deploy and configure the jar package when they are 
 5.1 Maven project structure management tool
 Maven constrain how you code java
 
+pom.xml file:
+is this the cor econfig file of maven.
+
+WE may meet question like under maven, we may find that our config file written by us may can not be import out or become useful problem:
+add a resource in the build.
 
 Serverlet:
 
+6.1 servlet introduction: sn company used it to develop dynamic web page technology.
+There is an interface in these APIS called servlet.
+If you wanna develop a servlet program, two steps:1 code a class, implement Servlet interface. 2.deploy the developed java class into the server.
+
+Java program which aimplement servlet interface called servlet.
+
+6.2 HelloServlet.
 
 
 
