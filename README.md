@@ -76,5 +76,134 @@ Java program which aimplement servlet interface called servlet.
 
 6.2 HelloServlet.
 
+6.5 ServletContext:
+share information
+present right now webapp,create a servlet Context obj for each web program when the web is started.
+  sharing data :data saved in this servlet and can be get in another servlet.
+  
+  create a class save the data, then create a class read the data.
+ 
+ServletContext context = this.getServletContext();
+context.setAttribute;
+context.getAttribute;
+context.getInitParameter  //get initial parameter in the xml file
+context.getRequestDispatcher  //show anothe rpage info to you without visiting address change
+
+6.6 HttpServletResponse
+When the web; server get http request feom client, based on this reqest, create HttpServletRequest obj, represent one HttpServletResponse.
+If we want to get parameter from the client port, find HttpServletRequest.
+If we wanna give some response to the client, find  HttpServletResponse.
+
+6.6-1 : method which is responsible for sending data to web:
+-getWriter
+-getOutputStream
+send response header to web:
+-setCharacterEncoding(String var1);
+-setContentLength(int var1);
+-setDataHeader(String var1, long var2);
+-addDataHeader(String var1, long var2);
+
+6.6-2 downloadfile:
+1.get path of file need to be downloaded
+2.name of the file
+3.set the web to support what we are going to download
+4.get the input stream of the file
+5.acreate a buffer zone
+6.get outputstream
+7.writer fileOutPutStream to the buffer zone
+8.use outputstream to output file to the client.
+
+6.6-3 verified code:
+1.front end 
+2.back end
+
+```java```
+package com.qilun.servlet;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Random;
+
+public class ImageServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //set browser refresh each 3s.
+        resp.setHeader("refresh", "3");
+        //in the memory, create a pic
+        BufferedImage image = new BufferedImage(80, 20, BufferedImage.TYPE_INT_BGR);
+
+        Graphics2D g = (Graphics2D) image.getGraphics();  //set a pen
+        //set color
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, 80, 20);
+        //give data to the pic
+        g.setColor(Color.BLACK);
+        g.setFont(new Font(null, Font.BOLD, 20));
+        g.drawString(makeNum(), 0, 20);
+
+        //tell browser this request open with image
+        resp.setContentType("image/jpeg");
+        //website has cache, so let browser not cache
+        resp.setDateHeader("expires", -1);
+        resp.setHeader("cache-control", "no-cache");
+        resp.setHeader("pragma", "no-cache");
+
+        //write the pic to the browser
+        ImageIO.write(image, "jpg", resp.getOutputStream());
+
+    }
+
+    //generate random number
+    private String makeNum(){
+        Random random = new Random();
+        String num = random.nextInt(9999999) + "";
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < 7 - num.length(); i++) {
+            sb.append("0");
+        }
+        String s = sb.toString() + num;
+        return num;
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+}
+--------------------------------------------------------------------------------------------------------
+
+response redirect:
+a web resource receive the request of the client and it acknowledge the client to access another web resource, it is called redirect.
+normal case: customer login
+
+6.7 HttpServletRequest
+Represent the request of the client. user access server throuth http request, a;; the info in the http will be up to the httpservletrequest,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
