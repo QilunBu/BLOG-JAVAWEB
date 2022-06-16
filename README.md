@@ -244,6 +244,63 @@ controller: receive the client request. Call model to execute different code. Co
 Filter:
 This filter is used for filting data.
 
+Filter development fteps:
+1.Import packages.
+2.code filters
+  -1. Filter belongs to javax.filter
+  -2. Must override three methods: init destory and doFilter
+  servlet need to config in the web.xml, also the filter do.
+  -3. implement filter interface
+ ------------------------------------------------------------------
+ package com.qilun.filter;
+
+import javax.servlet.*;
+import java.io.IOException;
+
+public class CharacterEncodingFilter implements Filter {
+    @Override
+    //initial
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    //all the code in the chain will process when doing specific request
+    //chain.doFilter(request, response); must write, keep the whole chain run.
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
+
+        System.out.println("Character filter before operate");
+
+        chain.doFilter(request, response); //let our request go. If not write, progress stops.
+        System.out.println("Character filter after operate");
+
+    }
+
+    @Override
+    //destroy
+    public void destroy() {
+        System.out.println("CharacterEncodingFilter has been destroyed.");
+
+    }
+}
+-------------------------------------------------------------
+  -4. config in the xml file
+  <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.qilun.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </filter-mapping>
+------------------------------------------------------------------
+
+
+ 
+
 
 
 
