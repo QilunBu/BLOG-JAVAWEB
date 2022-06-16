@@ -186,17 +186,46 @@ normal case: customer login
 Represent the request of the client. user access server throuth http request, a;; the info in the http will be up to the httpservletrequest,
 
 
+8.6 JSP tag, JSTL tag, EL expression
+
+
+EL express language: ${}
+1 get data 2 execute calculate  3 get web development object
+
+----------------------------------------------------------------------
+dependency : jspl-api  and standard 
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+<!--        standard store-->
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
 
 
 
+JSP tag:
+<jsp:include page="jsptag2.jsp"></jsp:include>
+<jsp:forward page="/jsptag2.jsp">  //when this page is accessed, forward the access to the new address in the pag=""
+    <jsp:param name="age" value="12"/>  //set name and value to a parameter which canbe get in the new address
+    <jsp:param name="name" value="value1"/>
+</jsp:forward>
 
+JSTL lable:
+https://www.runoob.com/jsp/jsp-jstl.html
+It isw the combination and collection of JSP tag. It package the JSP application general core function.
+Using JSTL is to prevent the weak of HTML lable.
 
+core tag: Core tags are the most commonly used JSTL tags. The syntax for referencing the core tag library is as follows:
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-
-
-
-
+JSTL tag using steps: 
+1. import the target taglib
+2. using the method in it.
 
 
 
