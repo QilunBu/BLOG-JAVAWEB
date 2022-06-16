@@ -226,6 +226,44 @@ core tag: Core tags are the most commonly used JSTL tags. The syntax for referen
 JSTL tag using steps: 
 1. import the target taglib
 2. using the method in it.
+3. Also need to import jar package in the tomcat to avoid error.
+
+9. JAVABEAN:
+object class:must have non parameter construct, 
+must private parameter,
+must have set and get method
+
+ORM: OBJECT RELATIONAL MAPPing
+DAO: DATA ACCESS OBJECT
+
+MVC:
+Model: control service, DAO and javabean
+view:show data, start servlet request
+controller: receive the client request. Call model to execute different code. Control view jump.
+
+Filter:
+This filter is used for filting data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
