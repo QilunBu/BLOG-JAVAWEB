@@ -350,11 +350,36 @@ public class OnlineCountListener implements HttpSessionListener {
         <listener-class>com.qilun.listener.OnlineCountListener</listener-class>
     </listener>
     
+User login ten access home page, otherwise, cannot access.   
+
+User filter, without login cannot access.
+------------------------------------------------------------------------
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+
+
+        if (request.getSession().getAttribute(Constant.USER_SESSION) == null){
+            response.sendRedirect("/error.jsp");
+        }
+        chain.doFilter(request, response);
+    }
+-----------------------------------------------------------------------------------
+
+junit:
+dependency:
+<dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        </dependency>
+
     
-    
+@Test only available on method.
 
 
-
+SMBMS
 
 
 
